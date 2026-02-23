@@ -1,0 +1,32 @@
+{
+  "current": {
+    "store_name": "SUPPLY HUB",
+    "color_primary": "#111111",
+    "color_accent": "#2a5bd7",
+    "color_background": "#f6f7fb",
+    "color_text": "#111111",
+    "radius_base": 14,
+    "spacing_scale": 8,
+    "type_scale": 16,
+    "enable_whatsapp_button": true,
+    "enable_promo_strip": true,
+    "enable_testimonials": true,
+    "social_instagram_link": ""
+  },
+  "presets": {
+    "default": {
+      "store_name": "SUPPLY HUB",
+      "color_primary": "#111111",
+      "color_accent": "#2a5bd7",
+      "color_background": "#f6f7fb",
+      "color_text": "#111111",
+      "radius_base": 14,
+      "spacing_scale": 8,
+      "type_scale": 16,
+      "enable_whatsapp_button": true,
+      "enable_promo_strip": true,
+      "enable_testimonials": true,
+      "social_instagram_link": ""
+    }
+  }
+}

@@ -1,0 +1,95 @@
+[
+  {
+    "name": "Theme settings",
+    "settings": [
+      {
+        "type": "text",
+        "id": "store_name",
+        "label": "Store display name",
+        "default": "SUPPLY HUB"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary color",
+        "default": "#111111"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent color",
+        "default": "#2a5bd7"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background color",
+        "default": "#f6f7fb"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text color",
+        "default": "#111111"
+      },
+      {
+        "type": "range",
+        "id": "radius_base",
+        "label": "Corner radius",
+        "default": 14,
+        "min": 0,
+        "max": 32,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "spacing_scale",
+        "label": "Base spacing",
+        "default": 8,
+        "min": 4,
+        "max": 16,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "range",
+        "id": "type_scale",
+        "label": "Base font size",
+        "default": 16,
+        "min": 14,
+        "max": 20,
+        "step": 1,
+        "unit": "px"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_whatsapp_button",
+        "label": "Enable WhatsApp button",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_promo_strip",
+        "label": "Enable promo strip by default",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_testimonials",
+        "label": "Enable testimonials by default",
+        "default": true
+      },
+      {
+        "type": "url",
+        "id": "social_instagram_link",
+        "label": "Instagram URL"
+      }
+    ]
+  }
+]

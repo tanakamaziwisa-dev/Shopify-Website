@@ -1,0 +1,76 @@
+<section class="value-props page-width" {{ section.shopify_attributes }}>
+  <div class="section-heading-wrap">
+    <h2>{{ section.settings.heading | escape }}</h2>
+  </div>
+  <div class="value-props__grid">
+    {% for block in section.blocks %}
+      <article class="value-prop" {{ block.shopify_attributes }}>
+        <div class="value-prop__icon" aria-hidden="true">
+          {% if block.settings.icon_svg != blank %}
+            {{ block.settings.icon_svg }}
+          {% else %}
+            {{ block.settings.icon_emoji | escape }}
+          {% endif %}
+        </div>
+        <h3>{{ block.settings.title | escape }}</h3>
+        <p>{{ block.settings.text | escape }}</p>
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Value props",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why teams choose SUPPLY HUB"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value_prop",
+      "name": "Value prop",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon_emoji",
+          "label": "Emoji icon",
+          "default": "⚡"
+        },
+        {
+          "type": "html",
+          "id": "icon_svg",
+          "label": "Inline SVG icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Fast fulfillment"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Get the products you need with dependable delivery windows."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Value props",
+      "blocks": [
+        { "type": "value_prop", "settings": { "icon_emoji": "⚡", "title": "Fast fulfillment", "text": "Same-day dispatch on stocked items." } },
+        { "type": "value_prop", "settings": { "icon_emoji": "✅", "title": "Trusted quality", "text": "Vetted products sourced from reliable suppliers." } },
+        { "type": "value_prop", "settings": { "icon_emoji": "💬", "title": "Expert support", "text": "Our team helps you choose the right products quickly." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,159 @@
+{% assign height_class = 'hero-banner--' | append: section.settings.height %}
+{% if section.settings.show_on_mobile == false %}
+  <style>
+    @media screen and (max-width: 749px) {
+      #shopify-section-{{ section.id }} {
+        display: none;
+      }
+    }
+  </style>
+{% endif %}
+
+<section
+  class="hero-banner {{ height_class }}"
+  style="--hero-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --hero-align: {{ section.settings.content_alignment }};"
+  {{ section.shopify_attributes }}
+>
+  <div class="hero-banner__media">
+    {% if section.settings.background_image != blank %}
+      {{ section.settings.background_image | image_url: width: 2200 | image_tag: loading: 'lazy', widths: '750, 1100, 1500, 2000', class: 'hero-banner__image', alt: section.settings.heading | escape }}
+    {% else %}
+      <div class="hero-banner__gradient" style="--hero-gradient: {{ section.settings.gradient }}"></div>
+    {% endif %}
+    <div class="hero-banner__overlay"></div>
+  </div>
+
+  <div class="page-width hero-banner__content">
+    {% if section.settings.eyebrow != blank %}
+      <p class="hero-banner__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    {% endif %}
+    <h1 class="hero-banner__heading">{{ section.settings.heading | escape }}</h1>
+    {% if section.settings.subheading != blank %}
+      <p class="hero-banner__subheading">{{ section.settings.subheading | escape }}</p>
+    {% endif %}
+    {% if section.settings.supporting_text != blank %}
+      <div class="hero-banner__text rte">{{ section.settings.supporting_text }}</div>
+    {% endif %}
+
+    <div class="hero-banner__actions">
+      {% if section.settings.primary_button_text != blank and section.settings.primary_button_link != blank %}
+        <a class="button button--primary" href="{{ section.settings.primary_button_link }}">
+          {{ section.settings.primary_button_text | escape }}
+        </a>
+      {% endif %}
+      {% if section.settings.secondary_button_text != blank and section.settings.secondary_button_link != blank %}
+        <a class="button button--secondary" href="{{ section.settings.secondary_button_link }}">
+          {{ section.settings.secondary_button_text | escape }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "New season essentials"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Upgrade every order with confidence"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Premium supply at unbeatable speed"
+    },
+    {
+      "type": "richtext",
+      "id": "supporting_text",
+      "label": "Supporting text",
+      "default": "<p>Discover curated products, trusted quality, and a frictionless checkout experience designed to keep your business moving.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "color_background",
+      "id": "gradient",
+      "label": "Gradient background",
+      "default": "linear-gradient(135deg, #111111 0%, #2a5bd7 100%)"
+    },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay opacity",
+      "default": 35,
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%"
+    },
+    {
+      "type": "select",
+      "id": "height",
+      "label": "Section height",
+      "default": "m",
+      "options": [
+        { "value": "s", "label": "Small" },
+        { "value": "m", "label": "Medium" },
+        { "value": "l", "label": "Large" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "show_on_mobile",
+      "label": "Show on mobile",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "primary_button_text",
+      "label": "Primary button text",
+      "default": "Shop now"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_text",
+      "label": "Secondary button text",
+      "default": "Explore collections"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero banner"
+    }
+  ]
+}
+{% endschema %}

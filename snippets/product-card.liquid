@@ -1,0 +1,28 @@
+<article class="product-card">
+  <a href="{{ product.url }}" class="product-card__media">
+    {% if product.featured_image != blank %}
+      {{ product.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '240, 360, 600', alt: product.title | escape }}
+    {% else %}
+      {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+  </a>
+  <div class="product-card__content">
+    {% if show_vendor %}
+      <p class="product-card__vendor">{{ product.vendor | escape }}</p>
+    {% endif %}
+    <h3><a href="{{ product.url }}">{{ product.title | escape }}</a></h3>
+    <p class="product-card__price">{{ product.price | money }}</p>
+    {% if show_rating %}
+      <p class="product-card__rating" aria-hidden="true">★★★★☆</p>
+    {% endif %}
+
+    {% if show_quick_add %}
+      {% form 'product', product, class: 'quick-add' %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        <button type="submit" class="button button--secondary" {% unless product.available %}disabled{% endunless %}>
+          {% if product.available %}{{ 'products.product.add_to_cart' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}
+        </button>
+      {% endform %}
+    {% endif %}
+  </div>
+</article>

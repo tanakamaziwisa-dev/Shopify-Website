@@ -1,0 +1,53 @@
+{% if settings.enable_promo_strip and section.settings.enable %}
+  <section class="promo-strip" data-autoscroll="{{ section.settings.auto_scroll }}" {{ section.shopify_attributes }}>
+    <div class="promo-strip__track">
+      {% for block in section.blocks %}
+        <span class="promo-strip__item" {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</span>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Promo strip",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Enable promo strip",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_scroll",
+      "label": "Auto-scroll text",
+      "default": false
+    }
+  ],
+  "blocks": [
+    {
+      "type": "promo",
+      "name": "Promo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Smarter Shopping Starts Here"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Promo strip",
+      "blocks": [
+        { "type": "promo", "settings": { "text": "Smarter Shopping Starts Here" } },
+        { "type": "promo", "settings": { "text": "No Borders. No Limits." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

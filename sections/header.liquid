@@ -1,0 +1,93 @@
+<header
+  class="site-header{% if section.settings.enable_sticky %} site-header--sticky{% endif %}"
+  style="--header-bg: {{ section.settings.background_color }}; --header-text: {{ section.settings.text_color }}; --header-padding: {{ section.settings.vertical_spacing }}px;"
+  data-sticky="{{ section.settings.enable_sticky }}"
+  {{ section.shopify_attributes }}
+>
+  <div class="page-width site-header__inner">
+    <a class="site-header__brand" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+      {% if section.settings.logo != blank %}
+        {{ section.settings.logo | image_url: width: 240 | image_tag: loading: 'eager', widths: '120, 180, 240', class: 'site-header__logo', alt: shop.name }}
+      {% else %}
+        <span class="site-header__name">{{ settings.store_name | default: shop.name | escape }}</span>
+      {% endif %}
+    </a>
+
+    {% if section.settings.menu != blank %}
+      <nav class="site-header__nav" aria-label="{{ 'sections.header.menu' | t }}">
+        <ul class="site-header__menu list-unstyled" role="list">
+          {% for link in section.settings.menu.links %}
+            <li>
+              <a href="{{ link.url }}" class="site-header__link{% if link.current %} is-active{% endif %}">
+                {{ link.title | escape }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    {% endif %}
+
+    <div class="site-header__actions">
+      <a href="{{ routes.search_url }}" class="icon-btn" aria-label="{{ 'general.search.search' | t }}">
+        {% render 'icon-search' %}
+      </a>
+      <a href="{{ routes.cart_url }}" class="icon-btn" aria-label="{{ 'templates.cart.cart' | t }}">
+        {% render 'icon-cart' %}
+        <span class="icon-btn__count">{{ cart.item_count }}</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "section",
+  "class": "section-header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_sticky",
+      "label": "Enable sticky header",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "vertical_spacing",
+      "label": "Vertical padding",
+      "default": 16,
+      "min": 8,
+      "max": 32,
+      "step": 2,
+      "unit": "px"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text",
+      "default": "#111111"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header"
+    }
+  ]
+}
+{% endschema %}
