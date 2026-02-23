@@ -1,0 +1,34 @@
+{
+  "sections": {
+    "announcement": { "type": "announcement-bar", "settings": {} },
+    "header": { "type": "header", "settings": {} },
+    "hero": { "type": "hero-banner", "settings": {} },
+    "promo": {
+      "type": "promo-strip",
+      "settings": { "enable": true, "auto_scroll": false },
+      "blocks": {
+        "promo1": { "type": "promo", "settings": { "text": "Smarter Shopping Starts Here" } },
+        "promo2": { "type": "promo", "settings": { "text": "No Borders. No Limits." } }
+      },
+      "block_order": ["promo1", "promo2"]
+    },
+    "featured_collections": { "type": "featured-collections", "settings": {} },
+    "featured_products": { "type": "featured-products", "settings": {} },
+    "value_props": { "type": "value-props", "settings": {} },
+    "testimonials": { "type": "testimonials", "settings": {} },
+    "footer": { "type": "footer", "settings": {} },
+    "whatsapp": { "type": "whatsapp-floating-button", "settings": {} }
+  },
+  "order": [
+    "announcement",
+    "header",
+    "hero",
+    "promo",
+    "featured_collections",
+    "featured_products",
+    "value_props",
+    "testimonials",
+    "footer",
+    "whatsapp"
+  ]
+}

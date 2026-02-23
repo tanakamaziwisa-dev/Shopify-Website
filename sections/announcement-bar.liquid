@@ -1,0 +1,61 @@
+{% if section.settings.show_announcement %}
+  <div
+    class="announcement-bar"
+    style="--announcement-bg: {{ section.settings.background_color }}; --announcement-text: {{ section.settings.text_color }};"
+    {{ section.shopify_attributes }}
+  >
+    <div class="page-width">
+      {% if section.settings.link != blank %}
+        <a class="announcement-bar__message" href="{{ section.settings.link }}">
+          {{ section.settings.message | escape }}
+        </a>
+      {% else %}
+        <p class="announcement-bar__message">{{ section.settings.message | escape }}</p>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "tag": "section",
+  "class": "section-announcement",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "message",
+      "label": "Message",
+      "default": "Free shipping on orders over $75"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Optional link"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#111111"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement bar"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,97 @@
+{% if settings.enable_testimonials and section.settings.enable %}
+  <section class="testimonials page-width" {{ section.shopify_attributes }}>
+    <div class="section-heading-wrap">
+      <h2>{{ section.settings.heading | escape }}</h2>
+    </div>
+    <div class="testimonials__grid">
+      {% for block in section.blocks %}
+        <article class="testimonial" {{ block.shopify_attributes }}>
+          {% if block.settings.photo != blank %}
+            {{ block.settings.photo | image_url: width: 140 | image_tag: loading: 'lazy', class: 'testimonial__photo', alt: block.settings.name | escape }}
+          {% endif %}
+          <p class="testimonial__rating" aria-label="{{ block.settings.rating }} out of 5 stars">
+            {% for i in (1..5) %}
+              {% if i <= block.settings.rating %}★{% else %}☆{% endif %}
+            {% endfor %}
+          </p>
+          <blockquote>{{ block.settings.text | escape }}</blockquote>
+          <p class="testimonial__meta">
+            <strong>{{ block.settings.name | escape }}</strong>
+            {% if block.settings.role != blank %}<span>{{ block.settings.role | escape }}</span>{% endif %}
+          </p>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Enable testimonials",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Trusted by fast-moving teams"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "photo",
+          "label": "Photo"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Jordan Lee"
+        },
+        {
+          "type": "text",
+          "id": "role",
+          "label": "Role",
+          "default": "Operations Manager"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Quote",
+          "default": "SUPPLY HUB helped us reduce purchasing time while improving product consistency."
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Rating",
+          "default": 5,
+          "min": 1,
+          "max": 5,
+          "step": 1
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        { "type": "testimonial" },
+        { "type": "testimonial" },
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "announcement": { "type": "announcement-bar", "settings": {} },
+    "header": { "type": "header", "settings": {} },
+    "main": { "type": "main-collection", "settings": {} },
+    "footer": { "type": "footer", "settings": {} },
+    "whatsapp": { "type": "whatsapp-floating-button", "settings": {} }
+  },
+  "order": ["announcement", "header", "main", "footer", "whatsapp"]
+}

@@ -1,0 +1,50 @@
+{% if settings.enable_whatsapp_button and section.settings.enable %}
+  {% assign phone = section.settings.phone_number | replace: ' ', '' | replace: '+', '' %}
+  <a
+    class="whatsapp-float"
+    href="https://wa.me/{{ phone }}?text={{ section.settings.default_message | url_encode }}"
+    target="_blank"
+    rel="noopener"
+    aria-label="{{ section.settings.aria_label | escape }}"
+    {{ section.shopify_attributes }}
+  >
+    <span aria-hidden="true">💬</span>
+  </a>
+{% endif %}
+
+{% schema %}
+{
+  "name": "WhatsApp floating button",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable",
+      "label": "Enable section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "phone_number",
+      "label": "WhatsApp phone number",
+      "default": "15551234567"
+    },
+    {
+      "type": "text",
+      "id": "default_message",
+      "label": "Default message",
+      "default": "Hi SUPPLY HUB, I need help choosing products."
+    },
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Chat on WhatsApp"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WhatsApp floating button"
+    }
+  ]
+}
+{% endschema %}

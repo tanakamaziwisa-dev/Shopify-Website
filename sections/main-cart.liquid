@@ -1,0 +1,38 @@
+<section class="main-cart page-width" {{ section.shopify_attributes }}>
+  <h1>{{ 'sections.cart.title' | t }}</h1>
+  {% if cart.item_count > 0 %}
+    <form action="{{ routes.cart_url }}" method="post">
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>{{ 'sections.cart.headings.product' | t }}</th>
+            <th>{{ 'sections.cart.headings.quantity' | t }}</th>
+            <th>{{ 'sections.cart.headings.total' | t }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart.items %}
+            <tr>
+              <td><a href="{{ item.url }}">{{ item.product.title | escape }}</a></td>
+              <td><input type="number" name="updates[]" value="{{ item.quantity }}" min="0"></td>
+              <td>{{ item.final_line_price | money }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="cart-actions">
+        <button type="submit" name="update" class="button button--secondary">{{ 'sections.cart.update' | t }}</button>
+        <button type="submit" name="checkout" class="button button--primary">{{ 'sections.cart.checkout' | t }}</button>
+      </div>
+    </form>
+  {% else %}
+    <p>{{ 'sections.cart.empty' | t }}</p>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Main cart",
+  "settings": []
+}
+{% endschema %}
